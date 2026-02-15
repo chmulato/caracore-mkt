@@ -1,0 +1,95 @@
+================================================================================
+CTO — Validação do software Cara Core MKT (ótica de eficiência operacional)
+================================================================================
+Premissa: A estratégia é pública porque o diferencial não é o plano, é a execução.
+Ninguém paga boleto por caridade e ninguém trabalha de graça.
+================================================================================
+
+1. AUTOMAÇÃO DO TRABALHO SUJO
+   O script elimina tarefas manuais repetitivas que humanos negligenciam por
+   preguiça ou cansaço?
+
+   SIM. O que o software faz por você:
+   · Script 1 (iniciar_trabalho): Registra início na planilha, abre a sala no
+     navegador. Elimina "esquecer de registrar" e "não saber onde clicar".
+   · Script 2 (validar_trabalho_executado): Valida face/gram/retro, pede
+     trabalho feito e horas, calcula valor da sessão e acumulado CC, atualiza
+     planilha e gera mensagem pronta para a sala. Elimina planilha desatualizada,
+     cálculo manual e "esquecer de fechar a sessão".
+   · Script 3 (transportar_para_salas): Copia de sala/entrega/ para
+     face/artefatos/, gram/artefatos/, retro/articles/. Elimina copiar manual
+     para pasta errada ou esquecer uma rede.
+   · Scripts 4–6 (validar_entrega_*): Checagem por sala. Elimina "deixar passar"
+     nome de arquivo fora do padrão, que quebra automação depois.
+   · validar_sala: Convenção de nomes (regex) e caixa "Texto para colar na IA".
+     Exatamente o tipo de detalhe que humano pula por cansaço.
+
+   Conclusão: O trabalho chato (registrar, copiar, conferir nomes, fechar
+   sessão) está automatizado. O humano faz o que só humano faz: copiar/colar
+   texto, gerar imagem na IA, salvar com o nome que o script depois valida.
+
+--------------------------------------------------------------------------------
+2. CONFIABILIDADE DA SAÍDA
+   Os dados gerados são acionáveis para um "vendedor" fechar sem pensar muito?
+
+   SIM. Saídas acionáveis:
+   · Planilha (planilha_sala.csv): data, tarefa_do_dia, trabalho_feito,
+     horas_previstas, horas_trabalhadas, valor_sessao_cc, acumulado_cc,
+     inicio_sessao, fim_sessao. Quem paga o operador tem: horas trabalhadas,
+     valor desta sessão (CC), acumulado. Basta conferir e pagar.
+   · Mensagens prontas (mensagens.py): Em erro ou em OK, o script imprime um
+     texto para copiar e enviar no WhatsApp, Telegram ou e-mail. A equipe
+     age sem precisar interpretar relatório técnico.
+   · Validação (validar.py): Nomes de arquivo no padrão (F, G, article) e
+     caixa de prompt nos HTMLs. O que passou na validação encaixa no funil
+     (face, gram, retro); o que não passou está explícito no [ERRO].
+
+   Conclusão: Dados suficientes para decisão de pagamento e para reportar
+   problema na sala sem esforço cognitivo extra.
+
+--------------------------------------------------------------------------------
+3. CUSTO DE PROCESSAMENTO
+   O script é leve para rodar barato (baixo consumo API/servidor)?
+
+   SIM. Custo praticamente zero:
+   · Nenhuma chamada a API externa (nada de OpenAI, Google, etc.).
+   · Apenas stdlib Python: filesystem, CSV, regex, webbrowser. requirements.txt
+     sem dependências pesadas.
+   · Roda na máquina local do operador. "Boleto" da operação = tempo do
+     operador + uso de CPU/memória desprezível.
+
+   Conclusão: O custo que importa é o da pessoa executando; o software não
+   adiciona custo de infra ou API.
+
+--------------------------------------------------------------------------------
+4. ESCALABILIDADE
+   O código aguenta 10x mais dados sem quebrar?
+
+   SIM, no cenário atual e em 10x:
+   · Planilha: CSV lido/escrito inteiro em memória. 10x mais linhas (ex. 10k
+     sessões) ainda é trivial. Se um dia houver volume massivo, migrar para
+     append-only ou DB; hoje não justifica.
+   · Transportar: Itera arquivos em 3 pastas; 10x mais arquivos = tempo linear.
+     Entrega típica é dezenas de arquivos por dia; 10x = centenas, ainda
+     segundos.
+   · Validação: glob *.html e regex por arquivo — linear no número de
+     artefatos. 10x mais artefatos = 10x tempo, ainda segundos.
+
+   Gargalo não é o código, é o humano (copiar, colar, salvar). O software
+   escala com o volume de arquivos sem redesenho.
+
+--------------------------------------------------------------------------------
+RESUMO CTO
+  Automação do trabalho sujo: SIM — registro, transporte, validação e
+    mensagens prontas reduzem o que o humano esquece ou pula.
+  Saída acionável: SIM — planilha com valor/acumulado CC e mensagens para
+    a sala permitem pagar e reportar sem interpretar.
+  Custo: Mínimo — sem API paga, sem servidor; roda local.
+  Escalabilidade: SIM — 10x mais dados não exige mudança de arquitetura.
+
+  Filosofia: A estratégia pode estar "aberta"; o diferencial é quem executa
+  todo dia (tráfego, lead, funil). O software existe para que a execução
+  seja confiável e barata — não para esconder o plano.
+================================================================================
+Cara Core Informática · Produto Cara Core MKT (não vendemos)
+================================================================================

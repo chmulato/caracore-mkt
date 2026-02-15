@@ -1,0 +1,3 @@
+# Cara Core MKT — Oficina (Python Baseline, Microsoft Store)
+# Dependências mínimas; os scripts usam principalmente a biblioteca padrão.
+# Se no futuro houver servidor web em Python para login/feedback, adicionar aqui.
