@@ -1,0 +1,15 @@
+Prompt para gerar a imagem que representa a nossa loja (Cara Core MKT — oficina da Sala de Notícias, online, livre para passear e conhecer).
+
+COERÊNCIA COM A SALA (D:\dev\caracore-site\sala):
+1. Skin: tema escuro (#0d1117 fundo, #161b22 painéis), destaque dourado (#ffd700). Ver SKIN_VISUAL_SALA.txt na sala.
+2. Distribuição das informações: a sala usa layout de duas zonas — (A) faixa lateral esquerda (sidebar, ~220px): logo, título "Plano e campanhas", lista de itens (Controle, Para quem opera, Feedback, Facebook, Instagram, LinkedIn), depois divisor e links de recursos (Passo a passo, Caixa de ferramentas, Prompts IA, etc.); (B) área principal mais larga: título em destaque, parágrafos e listas. Borda dourada sutil separa as duas zonas. A imagem deve sugerir essa mesma distribuição: painel/faixa à esquerda com itens organizados em seções; área principal com espaço para "conteúdo"; separação visual em dourado.
+
+---
+
+Prompt (pt-BR):
+Loja-oficina digital em tema escuro, espelhando a distribuição da Sala de Notícias. Duas zonas claras: (1) À esquerda, faixa ou painel mais escuro (#161b22), com prateleiras verticais ou nichos organizados em dois blocos — como "índice" ou "menu": primeiro bloco com itens principais (ex.: controle, operação, redes), segundo bloco separado por linha sutil com itens de apoio (ferramentas, passos, documentação). Borda ou filete dourado (#ffd700) separa essa faixa da zona principal. (2) À direita, área principal mais ampla: mesa ou bancada com espaço para um título em destaque (dourado) e superfície para conteúdo — poucos objetos (livros, pastas ou ferramentas) organizados, sugerindo "plano e campanhas". Iluminação suave e localizada. Sem pessoas. Minimalista, profissional, tom quente e sóbrio. Paleta: escuro predominante, detalhes e bordas em dourado. Sensação: "entre, fique à vontade" — coerente com o painel de controle editorial da Sala.
+
+---
+
+Alternativa em inglês para IAs de imagem:
+Digital workshop-store in dark theme, mirroring the News Room layout. Two clear zones: (1) On the left, a narrower strip or panel in darker tone (#161b22), with vertical shelves or niches arranged in two groups — like an index or menu: first group with main items (e.g. control, operations, channels), second group separated by a subtle line with support items (tools, steps, docs). A gold (#ffd700) border or line separates this strip from the main zone. (2) On the right, a wider main area: desk or work surface with room for a highlighted title (gold) and space for content — few objects (books, folders or tools) neatly arranged, suggesting "plan and campaigns". Soft, localized lighting. No people. Minimalist, professional, warm and sober tone. Palette: dark dominant, gold for details and borders. Feeling: "come in, make yourself at home" — coherent with the Sala's editorial control room.

@@ -1,6 +1,7 @@
 ================================================================================
 Cara Core MKT — Oficina (software em Python)
 ================================================================================
+Licença: MIT. Copyright (c) 2026 Cara Core Informática. Ver LICENSE.
 O Seed e o MKT são da Cara Core; não vendemos.
 
 PREMISSA (eficência operacional)
@@ -23,6 +24,10 @@ ESTRUTURA DO PROJETO (D:\dev\caracore-mkt)
   caracore-mkt/
     README.txt           — este arquivo
     requirements.txt    — dependências (stdlib apenas, ou mínimas)
+    CTO_VALIDACAO_MKT.txt — validação CTO (automação, custo, escalabilidade)
+    docs/                — documentação para GitHub (formato pasta docs)
+      README.md          — entrada da doc; estrutura e imagens
+      assets/img/        — sala_de_noticias.png, prompt_img.txt
     caracore_mkt/       — pacote Python
       __init__.py
       config.py         — caminhos (sala, repo, face, gram, retro)
