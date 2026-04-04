@@ -1,0 +1,43 @@
+﻿name: README Encoding Check
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+
+jobs:
+  readme-encoding:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate README encoding markers
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $readmes = Get-ChildItem -Path . -Recurse -File -Filter README.md
+          if (-not $readmes) {
+            Write-Host 'No README.md files found.'
+            exit 0
+          }
+
+          $pattern = '\u00C3[\u0080-\u00BF]|\u00C2[\u0080-\u00BF]|\u00E2[\u0080-\u00BF]{1,2}|\uFFFD'
+          $failed = @()
+
+          foreach ($f in $readmes) {
+            $raw = Get-Content -Path $f.FullName -Raw -Encoding UTF8
+            $hits = [regex]::Matches($raw, $pattern).Count
+            if ($hits -gt 0) {
+              $failed += [pscustomobject]@{ File = $f.FullName; Markers = $hits }
+            }
+          }
+
+          if ($failed.Count -gt 0) {
+            Write-Host 'README encoding check failed. Potential mojibake markers found:' -ForegroundColor Red
+            $failed | Sort-Object File | Format-Table -AutoSize
+            exit 1
+          }
+
+          Write-Host 'README encoding check passed.' -ForegroundColor Green
