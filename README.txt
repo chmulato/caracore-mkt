@@ -35,6 +35,7 @@ ESTRUTURA DO PROJETO (D:\dev\caracore-mkt)
       mensagens.py      — mensagens amigáveis (WhatsApp, Telegram, e-mail)
       validar.py        — validação face, gram, retro
     scripts/            — pontos de entrada (6 scripts)
+      oficina.py        — orquestrador único da oficina (listar, rodar, lotes)
       iniciar_trabalho.py
       validar_trabalho_executado.py
       validar_sala.py
@@ -54,6 +55,20 @@ ONDE FICA A SALA (HTML, planilha, regis)
 
 COMO RODAR
   Na pasta D:\dev\caracore-mkt (ou com CARACORE_REPO e CARACORE_SALA definidos):
+
+  Organização recomendada (um comando único)
+
+  py -3 scripts\oficina.py --listar
+  py -3 scripts\oficina.py --rodar iniciar
+  py -3 scripts\oficina.py --rodar transportar
+  py -3 scripts\oficina.py --lote operacao
+  py -3 scripts\oficina.py --lote fechamento
+
+  Lotes disponíveis no orquestrador:
+    abertura   = iniciar
+    operacao   = transportar + validar-face + validar-gram + validar-retro
+    fechamento = validar-sala + validar-encerrar
+    completo   = abertura + operacao + fechamento
 
   py -3 scripts\iniciar_trabalho.py
   py -3 scripts\validar_trabalho_executado.py
