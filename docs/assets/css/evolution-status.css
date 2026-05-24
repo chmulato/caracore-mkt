@@ -1,0 +1,40 @@
+/**
+ * Cara Core - Status de Evoluo (Seed)
+ * UX/UI Brand: Verde Esmeralda + Cinza Espacial
+ */
+:root {
+  --evo-emerald-50: #ecfdf5;
+  --evo-emerald-100: #d1fae5;
+  --evo-emerald-500: #10b981;
+  --evo-emerald-600: #059669;
+  --evo-emerald-700: #047857;
+  --evo-space-800: #1e293b;
+  --evo-space-700: #334155;
+  --evo-space-600: #475569;
+  --evo-space-500: #64748b;
+  --evo-space-400: #94a3b8;
+  --evo-white: #f8fafc;
+  --evo-shadow: 0 4px 6px -1px rgba(5, 150, 105, 0.08), 0 2px 4px -2px rgba(5, 150, 105, 0.06);
+  --evo-radius: 8px;
+  --evo-radius-sm: 6px;
+}
+.evo-beta-wrap { position: fixed; top: 0; right: 0; z-index: 9998; padding: 10px 14px; pointer-events: none; }
+.evo-beta-badge { pointer-events: auto; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: linear-gradient(135deg, var(--evo-emerald-600) 0%, var(--evo-emerald-700) 100%); color: var(--evo-white); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; border-radius: var(--evo-radius-sm); box-shadow: var(--evo-shadow); border: 1px solid rgba(255,255,255,0.12); cursor: help; position: relative; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.evo-beta-badge:hover { transform: translateY(-1px); box-shadow: 0 6px 12px -2px rgba(5, 150, 105, 0.2); }
+.evo-beta-badge::before { content: ''; width: 6px; height: 6px; background: var(--evo-emerald-100); border-radius: 50%; animation: evo-pulse 2s ease-in-out infinite; }
+@keyframes evo-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.evo-beta-tooltip { position: absolute; top: calc(100% + 8px); right: 0; width: 280px; padding: 12px 14px; background: var(--evo-space-800); color: var(--evo-white); font-size: 0.8125rem; line-height: 1.5; font-weight: 400; text-transform: none; letter-spacing: normal; border-radius: var(--evo-radius); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3); opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease; z-index: 10000; }
+.evo-beta-badge:hover .evo-beta-tooltip { opacity: 1; visibility: visible; transform: translateY(0); }
+.evo-beta-tooltip::before { content: ''; position: absolute; bottom: 100%; right: 16px; border: 6px solid transparent; border-bottom-color: var(--evo-space-800); }
+.evo-roadmap-footer { margin-top: auto; padding: 20px 24px 24px; background: linear-gradient(180deg, var(--evo-space-800) 0%, #0f172a 100%); border-top: 1px solid var(--evo-space-600); color: var(--evo-space-400); font-size: 0.8125rem; line-height: 1.6; }
+.evo-roadmap-title { display: flex; align-items: center; gap: 8px; color: var(--evo-emerald-500); font-weight: 600; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+.evo-roadmap-title::before { content: ''; width: 8px; height: 8px; background: var(--evo-emerald-500); border-radius: 50%; }
+.evo-roadmap-list { margin: 0; padding-left: 0; list-style: none; }
+.evo-roadmap-list li { position: relative; padding-left: 1rem; margin-bottom: 4px; }
+.evo-roadmap-list li::before { content: ''; position: absolute; left: 0; color: var(--evo-emerald-600); font-weight: 600; }
+.evo-roadmap-tag { display: inline-block; margin-left: 6px; padding: 2px 8px; background: rgba(16,185,129,0.15); color: var(--evo-emerald-500); font-size: 0.7rem; border-radius: 4px; }
+.evo-feedback-fab { position: fixed; bottom: 24px; right: 24px; z-index: 9997; }
+.evo-feedback-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; background: linear-gradient(135deg, var(--evo-emerald-600) 0%, var(--evo-emerald-700) 100%); color: var(--evo-white); font-size: 0.875rem; font-weight: 600; text-decoration: none; border-radius: 9999px; box-shadow: var(--evo-shadow); border: 1px solid rgba(255,255,255,0.12); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.evo-feedback-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 16px -4px rgba(5,150,105,0.25); color: var(--evo-white); }
+.evo-feedback-btn:focus { outline: 2px solid var(--evo-emerald-500); outline-offset: 2px; }
+.evo-feedback-btn svg { width: 18px; height: 18px; flex-shrink: 0; }

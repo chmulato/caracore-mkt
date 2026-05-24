@@ -1,5 +1,5 @@
 /**
- * CaraCore MKT — Loja (caracore-mkt/docs) — mesmo JS do delivery matriz
+ * CaraCore MKT - Delivery (caracore-site/delivery/mkt)
  */
 'use strict';
 
