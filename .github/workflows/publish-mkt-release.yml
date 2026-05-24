@@ -1,0 +1,77 @@
+name: Delivery MKT Release (CI)
+
+on:
+  workflow_dispatch:
+    inputs:
+      versao:
+        description: "Versao base (ex: 2026-05-24 ou v1.2.3)"
+        required: true
+      release_name:
+        description: "Titulo da release"
+        required: false
+        default: "Cara Core MKT Release"
+      prerelease:
+        description: "Publicar como pre-release?"
+        required: true
+        type: choice
+        options:
+          - "false"
+          - "true"
+        default: "false"
+
+permissions:
+  contents: write
+
+jobs:
+  delivery:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout caracore-mkt
+        uses: actions/checkout@v4
+
+      - name: Checkout caracore-mkt-releases
+        uses: actions/checkout@v4
+        with:
+          repository: chmulato/caracore-mkt-releases
+          path: caracore-mkt-releases
+          token: ${{ secrets.TOKEN_DELIVERY_CHMULATO_MKT_TO_REALEASES }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Create token file for oficina
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'TOKEN_DELIVERY_CHMULATO_MKT_TO_REALEASES=%s\n' "${{ secrets.TOKEN_DELIVERY_CHMULATO_MKT_TO_REALEASES }}" > token.txt
+
+      - name: Validate token and permissions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/oficina.py --validar-token --token-file token.txt --repo chmulato/caracore-mkt-releases
+
+      - name: Generate delivery artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/oficina.py --delivery --versao "${{ github.event.inputs.versao }}" --releases-dir "${{ github.workspace }}/caracore-mkt-releases"
+
+      - name: Publish release in caracore-mkt-releases
+        shell: bash
+        run: |
+          set -euo pipefail
+          EXTRA_NAME="${{ github.event.inputs.release_name }}"
+          if [[ -n "$EXTRA_NAME" ]]; then
+            python scripts/oficina.py --publicar-release --versao "${{ github.event.inputs.versao }}" --repo chmulato/caracore-mkt-releases --token-file token.txt --releases-dir "${{ github.workspace }}/caracore-mkt-releases" --release-name "$EXTRA_NAME" $([[ "${{ github.event.inputs.prerelease }}" == "true" ]] && echo "--prerelease")
+          else
+            python scripts/oficina.py --publicar-release --versao "${{ github.event.inputs.versao }}" --repo chmulato/caracore-mkt-releases --token-file token.txt --releases-dir "${{ github.workspace }}/caracore-mkt-releases" $([[ "${{ github.event.inputs.prerelease }}" == "true" ]] && echo "--prerelease")
+          fi
+
+      - name: Validate published release assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/oficina.py --validar-release --versao "${{ github.event.inputs.versao }}" --repo chmulato/caracore-mkt-releases --token-file token.txt --releases-dir "${{ github.workspace }}/caracore-mkt-releases"
