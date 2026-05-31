@@ -1,0 +1,26 @@
+---
+description: Memória da oficina Cara Core MKT — caracore-mkt; Sala Cara Core; uso interno; loja mkt.caracore.com.br
+alwaysApply: true
+---
+
+# Memória da Oficina — caracore-mkt
+
+## Repositório e papel
+- **caracore-mkt:** oficina (Python) da **Sala Cara Core** — automação operacional (face, gram, retro).
+- **Uso interno** — não há venda pública; vitrine gratuita para conhecer o fluxo.
+- Python baseline: Microsoft Store. Ver `README.txt` · `CTO_VALIDACAO_MKT.txt`.
+
+## Ambientes relacionados
+- **Loja:** caracore-mkt-releases — https://mkt.caracore.com.br/
+- **Sala canónica (matriz):** https://tools.caracore.com.br/sala/
+- **Matriz:** caracore-site — `portfolio.html#caracore-mkt`
+- **Espelho:** `docs/mirror-delivery.html` (oficina e loja)
+- **Índice:** caracore-site/docs/ECOSYSTEM_MEMORIA.md
+
+## Mensagem
+- Presença digital com propósito; execução validada e rastreável (LGPD).
+- Seed e MKT são Cara Core — **não vendemos** estes produtos.
+
+## Convenções
+- CTAs → **mkt.caracore.com.br** ou Sala; não `/delivery/mkt`.
+- Sincronizar mirror-delivery ao alterar narrativa matriz ↔ vitrine.
